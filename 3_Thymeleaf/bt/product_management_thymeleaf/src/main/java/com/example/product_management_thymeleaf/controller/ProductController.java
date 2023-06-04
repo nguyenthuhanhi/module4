@@ -8,6 +8,9 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Controller
 @RequestMapping("/product")
 public class ProductController {
@@ -23,8 +26,7 @@ public class ProductController {
     @GetMapping("/detail/{id}")
     public String showDetail(Model model,
                              @PathVariable("id") int id) {
-        Product product = productService.findById(id);
-        model.addAttribute("products", product);
+        model.addAttribute("products",productService.findById(id));
         return "/detail";
     }
     @GetMapping("/create")
@@ -32,10 +34,34 @@ public class ProductController {
         model.addAttribute("products", new Product());
         return "/create";
     }
-    @PostMapping("/save")
-    public String save(Product product) {
-        product.setId((int) (Math.random() * 10000));
-        productService.save(product);
-        return "redirect:/product";
+    @PostMapping("/create")
+    String doCreate(@ModelAttribute("products") Product product,Model model ) {
+        productService.create(product);
+        return "redirect:/product/list";
     }
+    @GetMapping("/update/{id}")
+    String showUpdate(Model model, @PathVariable("id") int id) {
+        model.addAttribute("products", productService.findById(id));
+        return "/update";
+    }
+    @PostMapping("/update")
+    String doUpdate(@ModelAttribute("products") Product product) {
+        productService.update(product);
+        return "redirect:/product/list";
+    }
+    @GetMapping("/delete/{id}")
+    String doDelete(Model model, @PathVariable("id") int id) {
+        productService.remove(productService.findById(id));
+        return "redirect:/product/list";
+    }
+
+    @PostMapping("/searchByName")
+    String doSearch(@RequestParam("name") String name,Model model){
+        List<Product> list= new ArrayList<>();
+        list.add(productService.findByName(name));
+        model.addAttribute("products",list);
+        return "/list";
+    }
+
+
 }
