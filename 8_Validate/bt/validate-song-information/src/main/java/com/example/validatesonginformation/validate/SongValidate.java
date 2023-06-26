@@ -6,8 +6,7 @@ import org.springframework.validation.Errors;
 import org.springframework.validation.Validator;
 
 public class SongValidate implements Validator {
-    @Autowired
-    ISongService service;
+
 
     @Override
     public boolean supports(Class<?> clazz) {
@@ -19,9 +18,8 @@ public class SongValidate implements Validator {
         if (!(target instanceof Song)) {
             return;
         }
-        Song song= (Song) target;
-        if(service.findById(song.getId())!=null){
+
             errors.rejectValue("id","Duplicate", null, "ID bị trùng lặp");
-        }
+
     }
 }

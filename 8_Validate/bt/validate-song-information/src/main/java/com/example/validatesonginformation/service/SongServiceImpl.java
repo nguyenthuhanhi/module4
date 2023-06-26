@@ -17,17 +17,17 @@ public class SongServiceImpl implements ISongService{
 
     @Override
     public void create(Song song) {
-
+        repository.save(song);
     }
 
     @Override
     public void update(Song song) {
-
+        repository.save(song);
     }
 
     @Override
     public Song findById(int id) {
-        return null;
+        return repository.findById(id).orElse(null);
     }
 
     @Override

@@ -5,22 +5,23 @@
     <title>Title</title>
 </head>
 <body>
-<form th:action="@{/product/search}" method="get" >
-    <span id="redcolor">Name</span>: <input type="text" name="name" th:value="${name != null ? name: ''}">
-    <input type="submit" value="Search2">
-</form>
+<a th:href="@{/create}">Create song</a></h3>
 <table>
     <tr>
         <th>ID</th>
         <th>Tên Bài Hát</th>
         <th>Nghệ Sỹ Thể Hiện</th>
         <th>Thể Loại Nhạc</th>
+        <td>Action</td>
     </tr>
     <tr th:each="s: ${song}" th:object="${s}">
         <td th:text="*{id}"></td>
         <td th:text="*{tenBaiHat}"></td>
         <td th:text="*{ngheSiTheHien}"></td>
         <td th:text="*{theLoaiNhac}"></td>
+        <td>
+            <button><a th:href="@{/update{id}(id=*{id})}">Update</a></button>
+        </td>
     </tr>
 </table>
 </body>

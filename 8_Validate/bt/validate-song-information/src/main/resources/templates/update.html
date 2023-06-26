@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h1>Update new Song</h1>
+<form th:action="@{/update}" method="post" th:object="${song}">
+    <table>
+        <tr>
+            <td>ID</td>
+            <td>
+                <input type="hidden" th:field="*{id}"  />
+                <!--        readonly-->
+                <span th:if="${#fields.hasErrors('id')}" th:errors="*{id}" ></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Ten Bai Hat</td>
+            <td>
+                <input type="text" th:field="*{tenBaiHat}" />
+                <span th:if="${#fields.hasErrors('tenBaiHat')}" th:errors="*{tenBaiHat}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>Nghe Si The Hien</td>
+            <td>
+                <input type="text" th:field="*{ngheSiTheHien}" />
+                <span th:if="${#fields.hasErrors('ngheSiTheHien')}" th:errors="*{ngheSiTheHien}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td>The Loai Nhac</td>
+            <td>
+                <input type="text" th:field="*{theLoaiNhac}" />
+                <span th:if="${#fields.hasErrors('theLoaiNhac')}" th:errors="*{theLoaiNhac}"></span>
+            </td>
+        </tr>
+        <tr>
+            <td><input type="reset" value="Reset"></td>
+            <td><input type="submit" value="Register"></td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
