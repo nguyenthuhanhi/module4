@@ -1,12 +1,12 @@
-package com.example.update_photo2.service;
+package com.example.update_photo3.service;
 
-import com.example.update_photo2.entity.Picture;
-import com.example.update_photo2.repository.IPictureReposirory;
+import com.example.update_photo3.entity.Picture;
+import com.example.update_photo3.repository.IPictureReposirory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import org.springframework.data.domain.Pageable;
 import java.util.List;
 
 @Service

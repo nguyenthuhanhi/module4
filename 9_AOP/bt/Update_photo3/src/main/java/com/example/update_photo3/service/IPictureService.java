@@ -1,9 +1,8 @@
-package com.example.update_photo2.service;
+package com.example.update_photo3.service;
 
-import com.example.update_photo2.entity.Picture;
+import com.example.update_photo3.entity.Picture;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
-
 
 import java.util.List;
 

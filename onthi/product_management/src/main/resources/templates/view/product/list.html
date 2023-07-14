@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.2.0/css/bootstrap.min.css"
+      crossorigin="anonymous">
+<head>
+    <meta charset="UTF-8">
+    <title>List product</title>
+
+</head>
+<body>
+
+<table class="table">
+    <thead class="thead-dark">
+     <tr>
+        <th>ID</th>
+        <th>Name</th>
+         <th>Category</th>
+         <th>Price</th>
+         <th>DateRelease</th>
+        <th>Quantity</th>
+        <th>Action</th>
+    </tr>
+    </thead>
+    <tr th:each="p: ${products}" th:object="${p}">
+        <td th:text="*{id}"></td>
+        <td th:text="*{name}"></td>
+        <td th:text="*{category.categoryName}"></td>
+        <td th:text="*{#numbers.formatCurrency(price)}"></td>
+        <td th:text="*{#dates.format(dateRelease, 'dd/MM/yyyy')}"></td>
+        <td th:text="*{quantity}"></td>
+        <td>
+            <a class="btn btn-success" th:href="@{/product/detail/{id}(id=*{id})}">Detail</a>
+            <a class="btn btn-dark" th:href="@{/product/update(id=*{id})}">Update</a>
+            <a class="btn btn-primary" th:href="@{/product/delete/{id}(id=*{id})}">Delete</a>
+        </td>
+    </tr>
+</table>
+</body>
+</html>

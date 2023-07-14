@@ -1,4 +1,4 @@
-//package com.example.update_photo2.repository;//package com.example.update_photo1.repository;
+package com.example.update_photo3.repository;//package com.example.update_photo2.repository;//package com.example.update_photo1.repository;
 //
 //import com.example.update_photo1.entity.Picture;
 //import org.springframework.stereotype.Repository;

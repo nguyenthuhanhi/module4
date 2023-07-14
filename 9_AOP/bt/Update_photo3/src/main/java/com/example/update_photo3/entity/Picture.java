@@ -1,4 +1,4 @@
-package com.example.update_photo2.entity;
+package com.example.update_photo3.entity;
 
 
 import javax.persistence.*;

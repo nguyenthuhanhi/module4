@@ -1,35 +1,28 @@
 package com.example.update_photo3.aop;
 
+import com.example.update_photo3.entity.Picture;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.ProceedingJoinPoint;
-import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
-import org.aspectj.lang.annotation.Pointcut;
+import org.aspectj.lang.annotation.*;
 import org.springframework.stereotype.Component;
 
+import java.time.LocalDateTime;
 import java.util.logging.Logger;
 
 @Aspect
 @Component
 public class PictureAspect {
     private Logger logger = Logger.getLogger(PictureAspect.class.getName());
-    @Pointcut("execution (* codegym.vn.service.ProductService.*(..))")
-    public void productService() {};
 
-    @Before("productService()")
-    public void writeLogProductService(JoinPoint joinPoint) {
-        String methodName = joinPoint.getSignature().getName();
-        logger.info("Before: " + methodName);
+    @AfterThrowing(pointcut = "execution(* com.example.update_photo3.controller.PictureController.doCreate(..))", throwing = "ex")
+    public void logException(JoinPoint joinPoint, Exception ex) {
+        Picture[] args = new Picture[0];
+        Picture picture = args[0];
+        String author = picture.getAuthor();
+        String feedbackContent = picture.getFeedback();
+        LocalDateTime feedbackTime = LocalDateTime.now();
+        System.out.println("Exception in Author:" + author +";"+ "Feedback:" + feedbackContent +";"+ "Feedback time:" + feedbackTime);
     }
 
-    @Around("execution (* codegym.vn.service.ProductService.findAll())")
-    public Object writeLogFindAll(ProceedingJoinPoint joinPoint) throws Throwable {
-        String methodName = joinPoint.getSignature().getName();
-        logger.info("Around before call: " + methodName);
-        Object result = joinPoint.proceed();
-        logger.info("Around after call: " + methodName);
-        return result;
-    }
 
 }
